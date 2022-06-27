@@ -3,7 +3,22 @@
  */
 
 // Capitura o clique do teclado
-document.body.onkeydown = function (e) { move(e.keyCode); }
+document.body.onkeydown = function (e) {
+    
+    let controle = e.keyCode;
+
+    if((direcao == 38 && controle == 40) ||
+    (direcao == 40 && controle == 38) ||
+    (direcao == 37 && controle == 39) ||
+    (direcao == 39 && controle == 37) ||
+    (direcao == 38 && controle == 38) ||
+    (direcao == 40 && controle == 40) ||
+    (direcao == 37 && controle == 37) ||
+    (direcao == 39 && controle == 39))
+        return;
+    
+    move(controle); 
+}
 
 const PAINEL = document.querySelector("#painel");
 const PONTOS = document.querySelector("#pontos");
@@ -24,7 +39,6 @@ function start() {
 
 function loop() {
     move(direcao);
-    checkColision();
     PONTOS.innerHTML = tamanho;
 }
 
@@ -38,9 +52,10 @@ function stop() {
 function checkColision(){
     let left = cobra[0].style.left;
     let top = cobra[0].style.top;
+    /*console.log("left: " + left + "; top: " + top + "\nleft: " + obstaculo.style.left +
+    "; top: " + obstaculo.style.top);*/
     if(left == obstaculo.style.left && top == obstaculo.style.top){
-        tamanho++;
-        cobra[tamanho] = updatePosition(
+        cobra[++tamanho] = updatePosition(
             newElement(),
             parseInt(obstaculo.style.left),
             parseInt(obstaculo.style.top));
@@ -91,11 +106,6 @@ function move(controle) {
     let top = parseInt(cobra[0].style.top);
     let left = parseInt(cobra[0].style.left);
 
-    if((direcao == 38 && controle == 40) ||
-    (direcao == 40 && controle == 38) ||
-    (direcao == 37 && controle == 39) ||
-    (direcao == 39 && controle == 37))
-        return;
     direcao = controle;
 
     // De acordo com o controle pressionado...
@@ -127,4 +137,5 @@ function move(controle) {
     }
     //Atualiza os valores de top e left do objeto
     updatePosition(cobra[0], left, top);
+    checkColision();
 }
