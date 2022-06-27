@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+html, body{
+    /*height: 100%;*/
+}
+#controle{
+    float: left;
+    text-align: center;
+}
+#controle div button{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+#painel{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    top:5%;
+    background-color: #49c;
+    margin: auto;
+}
+.item{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #c44;
+}
+.parcial{
+    margin: auto;
+    width: 400px;
+    background-color: #ddd;
+    padding: 2em;
+}
+.parcial div{
+    text-align: center;
+}
+.parcial button{
+    padding: 1em;
+}
